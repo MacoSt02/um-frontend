@@ -1,22 +1,23 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
+import '../css/Sidebar.css';
 
-const Sidebar = () => {
+interface SidebarProps {
+  isOpen: boolean;
+  toggleSidebar: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
   return (
-    <div className="sidebar">
-      <h2>Admin Dashboard</h2>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/users">Users</Link>
-          </li>
-          <li>
-            <Link to="/settings">Settings</Link>
-          </li>
-        </ul>
-      </nav>
+    <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
+      <button onClick={toggleSidebar} className="toggle-button">
+        {isOpen ? 'Hide' : 'Show'} Sidebar
+      </button>
+      <ul>
+        <li>Dashboard</li>
+        <li>Users</li>
+        <li>Settings</li>
+        <li>Profile</li>
+      </ul>
     </div>
   );
 };
