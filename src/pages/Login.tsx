@@ -1,56 +1,35 @@
-import { useContext } from "react";
-import Text from "../components/Text";
-import { ThemeContext } from "styled-components";
 
 const Login = () => {
-  const theme = useContext(ThemeContext)!;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <Text text='Sign In' fontColor={theme.colors.black} fontSize={theme.fontSizes.l}/>
-        <Text text='Enter your email and password below to access your account.' fontColor={theme.colors.secondary} fontSize={theme.fontSizes.s}/>
+    <div className='flex items-center justify-center min-h-screen bg-gray-100'>
+      <div className='flex flex-col items-center justify-center max-w-lg p-4 space-y-4 text-center'>
+        <h1 className="text-3xl font-bold">Sign in</h1>
+        <p className="text-gray-500 dark:text-gray-400">
+          Enter your email and password below to access your account.
+        </p>
+        <form>
+          <div className='w-full text-left'>
+            <label className='font-bold block mb-1 text-gray-700'>Email</label>
+            <input
+              type='email'
+              placeholder='email@email.com'
+              className='w-full p-2 border border-solid border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500'
+            />
+          </div>
+
+          <div className='w-full text-left'>
+            <label className='font-bold block mb-1 text-gray-700'>Password</label>
+            <input
+              type='password'
+              className='w-full p-2 border border-solid border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500'
+            />
+          </div>
+          <button className='w-full p-2 font-bold text-white bg-black rounded-lg hover:bg-gray-900'>Sign in</button>
+        </form>
+      </div>
     </div>
   );
 };
 
 export default Login;
-
-
-{/* <form>
-  <div className="mb-4">
-    <label
-      className="block text-gray-700 text-sm font-bold mb-2"
-      htmlFor="username"
-    >
-      Username
-    </label>
-    <input
-      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      id="username"
-      type="text"
-      placeholder="Enter your username"
-    />
-  </div>
-  <div className="mb-6">
-    <label
-      className="block text-gray-700 text-sm font-bold mb-2"
-      htmlFor="password"
-    >
-      Password
-    </label>
-    <input
-      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-      id="password"
-      type="password"
-      placeholder="Enter your password"
-    />
-  </div>
-  <div className="flex items-center justify-center">
-    <button
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      type="button"
-    >
-      Sign In
-    </button>
-  </div>
-</form> */}
