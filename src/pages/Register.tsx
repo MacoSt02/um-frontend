@@ -39,7 +39,7 @@ const Register = () => {
             <label className='font-bold block mb-1 text-gray-700'>First Name</label>
             <div className="relative">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <Icon icon="solar:user-bold-duotone" width="1.4em" height="1.4em" />
+                <Icon icon="solar:user-bold-duotone" width="1.3em" height="1.3em" />
               </div>
               <input
                 type='text'
@@ -53,7 +53,7 @@ const Register = () => {
             <label className='font-bold block mb-1 text-gray-700'>Last Name</label>
             <div className="relative">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <Icon icon="solar:hashtag-bold-duotone" width="1.4em" height="1.4em" />
+                <Icon icon="solar:hashtag-bold-duotone" width="1.3em" height="1.3em" />
               </div>
               <input
                 type='text'
@@ -67,7 +67,7 @@ const Register = () => {
             <label className='font-bold block mb-1 text-gray-700'>Email</label>
             <div className="relative">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <Icon icon="solar:hashtag-bold-duotone" width="1.4em" height="1.4em" />
+                <Icon icon="solar:hashtag-bold-duotone" width="1.3em" height="1.3em" />
               </div>
               <input
                 type='email'
@@ -81,7 +81,7 @@ const Register = () => {
             <label className='font-bold block mb-1 text-gray-700'>Password</label>
             <div className="relative">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <Icon icon="solar:lock-password-bold-duotone" width="1.4em" height="1.4em" />
+                <Icon icon="solar:lock-password-bold-duotone" width="1.3em" height="1.3em" />
               </div>
               <input
                 type={type}
