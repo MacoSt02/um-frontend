@@ -1,28 +1,36 @@
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+
+const SignIn = () => {
+  const navigate = useNavigate();
+
   const [password, setPassword] = useState('');
   const [type, setType] = useState('password');
-  const [icon, setIcon] = useState('solar:eye-bold-duotone');
+  const [passIcon, setPassIcon] = useState('solar:eye-bold-duotone');
 
   const handleTogglePassword = () => {
     if (type === 'password') {
-      setIcon('solar:eye-closed-bold-duotone');
+      setPassIcon('solar:eye-closed-bold-duotone');
       setType('text');
     } else {
-      setIcon('solar:eye-bold-duotone');
+      setPassIcon('solar:eye-bold-duotone');
       setType('password');
     }
   };
 
-  return (
-    <div className='flex items-center justify-center min-h-screen bg-gray-100'>
-      <div className='flex flex-col items-center justify-center max-w-lg p-4 space-y-4 text-center'>
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
 
-        <h1 className="text-3xl font-bold">Sign in</h1>
+  return (
+    <div className='flex items-center justify-center min-h-screen bg-neutral-100'>
+      <div className='flex flex-col items-center justify-center max-w-lg p-2 space-y-6 text-center w-11/12'>
+
+        <h1 className="text-3xl font-bold text-black">Sign in</h1>
         <p className="text-neutral-500">
-          Enter your <strong className='text-black'>email</strong> and <strong className='text-black'>password</strong> below to access your account.
+          Enter your <strong className='text-neutral-700'>email</strong> and <strong className='text-neutral-700'>password</strong> below to access your account.
         </p>
 
         <div className='w-full text-left'>
@@ -35,8 +43,8 @@ const Login = () => {
               </div>
               <input
                 type='email'
-                placeholder='email@email.com'
-                className='w-full p-2 ps-11 border border-solid border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 block'
+                placeholder='email@domain.com'
+                className='w-full p-2 ps-11 border border-solid border-gray-300 rounded-xl focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
               />
             </div>
           </div>
@@ -52,20 +60,21 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete='current-password'
-                className='w-full p-2 ps-11 pe-11 font-sans tracking-widest border border-solid border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 block'
+                className={`w-full p-2 ps-11 pe-11 border border-solid border-gray-300 rounded-xl focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${type === 'password' ? 'font-sans tracking-widest' : ''}`}
               />
               <button onClick={handleTogglePassword} className='absolute inset-y-0 end-0 flex items-center pe-3'>
-                <Icon icon={icon} width="1.3em" height="1.3em" />
+                <Icon icon={passIcon} width="1.3em" height="1.3em" />
               </button>
             </div>
           </div>
 
-          <button className='w-full p-2 font-bold text-white bg-black rounded-lg hover:bg-neutral-800'>Sign in</button>
+          <button className='w-full p-2 font-bold text-white bg-black rounded-xl hover:bg-neutral-800'>Sign in</button>
 
         </div>
+        <p className="text-neutral-500">Don't have an account? <strong className='text-neutral-700 underline cursor-pointer hover:text-black' onClick={handleRegisterClick}>Register</strong></p>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignIn;
