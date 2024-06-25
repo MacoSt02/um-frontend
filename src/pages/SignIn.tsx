@@ -33,7 +33,7 @@ const SignIn = () => {
           Enter your <strong className='text-neutral-700'>email</strong> and <strong className='text-neutral-700'>password</strong> below to access your account.
         </p>
 
-        <div className='w-full text-left'>
+        <form className='w-full text-left'>
 
           <div className='mb-6'>
             <label className='font-bold block mb-1 text-gray-700'>Email</label>
@@ -70,7 +70,7 @@ const SignIn = () => {
 
           <button className='w-full p-2 font-bold text-white bg-black rounded-xl hover:bg-neutral-800'>Sign in</button>
 
-        </div>
+        </form>
         <p className="text-neutral-500">Don't have an account? <strong className='text-neutral-700 underline cursor-pointer hover:text-black' onClick={handleRegisterClick}>Register</strong></p>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import serverApi from '../fetch/config';
 
 
 const Register = () => {
@@ -9,13 +10,14 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [type, setType] = useState('password');
   const [passIcon, setPassIcon] = useState('solar:eye-bold-duotone');
-  const [birthdate, setBirthdate] = useState('');
+  // const birthdate = new Date().toISOString().split('T')[0];
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
 
-  const handleTogglePassword = () => {
+  const handleTogglePassword = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (type === 'password') {
       setPassIcon('solar:eye-closed-bold-duotone');
       setType('text');
@@ -29,50 +31,11 @@ const Register = () => {
     navigate('/signin');
   };
 
-  const handleRegister = async () => {
-    const date = birthdate.split('-');
-    setBirthdate(`${date[2]}-${date[1]}-${date[0]}`);
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    const user = {
-      username,
-      password,
-      email,
-      firstname,
-      lastname,
-      birthdate,
-    };
-
-    try {
-      const response = await fetch('http://localhost:3000/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
-
-      if (response.ok) {
-        // Registre exitós
-        navigate('/signin');
-      } else {
-        // Error en el registre
-        const errorData = await response.json();
-        console.error('Error en el registre:', errorData.message);
-      }
-    } catch (error) {
-      console.error('Error en la sol·licitud:', error);
-    }
-  };
-
-  const handleBirthdayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 2) {
-      value = value.slice(0, 2) + '-' + value.slice(2);
-    }
-    if (value.length > 5) {
-      value = value.slice(0, 5) + '-' + value.slice(5);
-    }
-    setBirthdate(value);
+    const data = serverApi.get('/users');
+    console.log(data);
   };
 
   return (
@@ -84,7 +47,7 @@ const Register = () => {
           Fill the form below to register.
         </p>
 
-        <div className='w-full text-left'>
+        <form className='w-full text-left' onSubmit={handleRegister}>
 
           <div className='mb-6'>
             <label className='font-bold block mb-1 text-gray-700'>First Name</label>
@@ -113,26 +76,6 @@ const Register = () => {
                 value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
                 placeholder='Batistti Moreno'
-                className='w-full p-2 ps-11 border border-solid border-gray-300 rounded-xl focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
-              />
-            </div>
-          </div>
-
-          <div className='mb-6'>
-            <div className='flex items-end'>
-              <label className='font-bold block mb-1 text-gray-700'>Birthday</label>
-              <p className='text-sm ml-2 mb-1.5'>Day-Month-Year</p>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                <Icon icon="solar:hashtag-bold-duotone" width="1.3em" height="1.3em" />
-              </div>
-              <input
-                type='text'
-                value={birthdate}
-                onChange={handleBirthdayChange}
-                placeholder='02-01-200'
-                maxLength={10}
                 className='w-full p-2 ps-11 border border-solid border-gray-300 rounded-xl focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
               />
             </div>
@@ -189,9 +132,9 @@ const Register = () => {
             </div>
           </div>
 
-          <button className='w-full p-2 font-bold text-white bg-black rounded-xl hover:bg-neutral-800' onClick={handleRegister}>Register</button>
+          <button className='w-full p-2 font-bold text-white bg-black rounded-xl hover:bg-neutral-800'>Register</button>
 
-        </div>
+        </form>
         <p className="text-neutral-500">Have an account? <strong className='text-neutral-700 underline cursor-pointer hover:text-black' onClick={handleRegisterClick}>Sign in</strong></p>
       </div>
     </div>
